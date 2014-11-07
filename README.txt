@@ -153,7 +153,7 @@ time get to your query.
                                  VERSIONS
 *******************************************************************************
 
-0.1 Inital version, not publically released
+0.1 Inital version
 0.2 Added random and sequental modes and source address masks
-0.3 added community string file list feature, first publical version
+0.3 added community string file list feature, first public version
 
