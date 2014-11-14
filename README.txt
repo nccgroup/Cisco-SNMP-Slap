@@ -95,7 +95,7 @@ than just one IP address.
     Success!
  
 You should notice that the program exists and announces success several IP
-addresses after it enters the `10.100.100.0/2` range. This because it is not
+addresses after it enters the `10.100.100.0/24` range. This because it is not
 possible to determine which source address was successful, but determines one
 of the requests was successful after the config file turns up in the tftproot.
 Given you've just nabbed the running config you can now find out the details
