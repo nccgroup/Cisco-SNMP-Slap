@@ -152,3 +152,4 @@ VERSIONS
 * 0.1 Inital version
 * 0.2 Added random and sequental modes and source address masks
 * 0.3 added community string file list feature, first public version
+* 0.3.1 now uses os.sep so that paths work correctly on Windows

